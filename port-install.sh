@@ -13,6 +13,5 @@ port install \
 	istumbler \
 	john \
 	nmap \
-	scala \
 	wget \
 	wireshark \
