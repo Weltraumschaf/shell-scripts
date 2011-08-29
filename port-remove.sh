@@ -6,6 +6,8 @@
 ## See http://guide.macports.org/#installing.macports.uninstalling
 ##
 
+port uninstall coreutils
+
 rm -rf \
     /opt/local \
     /Applications/DarwinPorts \
