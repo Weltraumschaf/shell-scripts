@@ -6,21 +6,26 @@
 
 function linkFile {
     source="${PWD}/$1"
-    targetDir="${HOME}/bin"
     targetFile="${1/src\//}"
     targetFile="${targetFile/\.sh/}"
-    target="${targetDir}/${targetFile}"
+    target="${2}/${targetFile}"
 
     # Only create backup if target is a file or directory
     if [ -f "${target}" ] || [ -d "${target}" ]; then
-    	echo "Backing up port-remove.sh"
-        mv "$target" "$target.bak"
+    	echo "Backing up ${target}"
+        mv "${target}" "${target}.bak"
     fi
 
     ln -sf "${source}" "${target}"
 }
 
+targetDir="${HOME}/bin"
+
+if [ ! -d "${targetDir}" ]; then
+    mkdir -p "${targetDir}"
+fi
+
 for i in src/*.sh
 do
-  linkFile "$i"
+  linkFile "$i" "${targetDir}"
 done
