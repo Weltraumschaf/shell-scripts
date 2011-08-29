@@ -12,8 +12,10 @@ function linkFile {
 
     # Only create backup if target is a file or directory
     if [ -f "${target}" ] || [ -d "${target}" ]; then
-    	echo "Backing up ${target}"
-        mv "${target}" "${target}.bak"
+        if [ ! -L "${target}" ]; then
+        	echo "Backing up ${target}"
+            mv "${target}" "${target}.bak"
+        fi
     fi
 
     ln -sf "${source}" "${target}"
