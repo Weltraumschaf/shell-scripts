@@ -12,6 +12,7 @@ port install \
 	coreutils \
 	git-core \
 	istumbler \
+    jed \
 	john \
 	nmap \
 	pwgen \
