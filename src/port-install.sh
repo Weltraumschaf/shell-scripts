@@ -7,9 +7,11 @@
 ##
 
 port install \
+    coreutils +with_default_names
+
+port install \
 	aircrack-ng \
 	arping \
-	coreutils \
 	git-core \
 	istumbler \
     jed \
