@@ -22,5 +22,6 @@ port install \
 	pwgen \
 	rhino \
 	scala29 \
+	unrar \
 	wget \
 	wireshark \
