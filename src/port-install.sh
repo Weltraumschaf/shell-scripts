@@ -18,6 +18,7 @@ port install \
 	istumbler \
 	jed \
 	john \
+    ImageMagick \
 	nmap \
 	pwgen \
 	rhino \
