@@ -12,7 +12,7 @@ port install \
 port install \
 	aircrack-ng \
 	arping \
-	couchdb \
+	#couchdb \
 	#erlang \
 	git-core \
 	istumbler \
