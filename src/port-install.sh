@@ -12,8 +12,6 @@ port install \
 port install \
 	aircrack-ng \
 	arping \
-	#couchdb \
-	#erlang \
 	git-core \
 	istumbler \
 	jed \
