@@ -13,12 +13,12 @@ port install \
 	aircrack-ng \
 	arping \
 	couchdb \
-	erlang \
+	#erlang \
 	git-core \
 	istumbler \
 	jed \
 	john \
-    ImageMagick \
+    	ImageMagick \
 	nmap \
 	pwgen \
 	rhino \
