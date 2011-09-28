@@ -13,10 +13,11 @@ port install \
 	aircrack-ng \
 	arping \
 	git-core \
+    htop \
 	istumbler \
 	jed \
 	john \
-    	ImageMagick \
+    ImageMagick \
 	nmap \
 	pwgen \
 	rhino \
