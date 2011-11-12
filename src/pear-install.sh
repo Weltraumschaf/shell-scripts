@@ -21,3 +21,4 @@ pear install --alldeps \
 	pat/vfsStream-beta \
 	pdepend/PHP_Depend-beta \
 	phpmd/PHP_PMD \
+	phpunit/PHPUnit \
