@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# see http://simenhag.blogspot.com/2008/11/cleaning-up-macports.html
+
 PORTS_HOME="/opt/local"
 
 echo "cleaning MacPorts in ${PORTS_HOME}…"
