@@ -22,3 +22,5 @@ pear install --alldeps \
 	pdepend/PHP_Depend-beta \
 	phpmd/PHP_PMD \
 	phpunit/PHPUnit \
+    phpnit/phploc \
+    phpunit/phpcpd \
