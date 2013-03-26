@@ -9,20 +9,8 @@
 ## http://mxcl.github.com/homebrew/
 ##
 
-brew install \
-    coreutils \
-    aircrack-ng \ 
-    arping \
-    git \
-    htop \
-    jed \
-    john \
-    imagemagick \
-    nmap \
-    pwgen \
-    rhino \
-    scala \
-    svn \
-    unrar \
-    wget \
-    wireshark 
+formulas="coreutils aircrack-ng arping git htop jed john imagemagick nmap pwgen rhino scala svn unrar wget wireshark"
+
+for formula in $formulas ; do
+    brew install $formula
+done
