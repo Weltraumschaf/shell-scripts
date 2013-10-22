@@ -1,4 +1,4 @@
 #!/bin/bash
 
-git config --global user.name "Sven Strittmatter"
-git config --global user.email "ich@weltraumschaf.de"
+git config user.name "Sven Strittmatter"
+git config user.email "ich@weltraumschaf.de"
