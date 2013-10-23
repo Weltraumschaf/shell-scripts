@@ -1,15 +1,22 @@
 #!/bin/bash
 
 CWD=`pwd`
+BRANCH="${1}"
 
-echo "Pulling all repos in ${CWD}..."
+if [ "${BRANCH}" == "" ]; then
+    echo "No branch given! Specify branch as first argument."
+    exit 1
+fi
+
+echo "Pulling branch ${BRANCH} for all repos in ${CWD}..."
 
 for repo in $(ls -1)
 do
-    echo "Try to pull ${CWD}/${repo}"
+    fullPath="${CWD}/${repo}"
     
-    if [ -d "${CWD}/${repo}" ]; then 
-        cd "${CWD}/${repo}" && git checkout master && git pull origin master
+    if [ -d "${fullPath}" ]; then 
+        echo "Try to pull ${fullPath}..."
+        cd "${fullPath}" && git checkout "${BRANCH}" && git pull origin "${BRANCH}"
     fi
 done
 
