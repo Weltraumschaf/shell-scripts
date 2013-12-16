@@ -9,7 +9,7 @@ do
     fullPath="${CWD}/${repo}"
     
     if [ -d "${fullPath}" ]; then 
-        echo "Try to pull ${fullPath}..."
+        echo "Try to gc/prune ${fullPath}..."
         cd "${fullPath}" && git gc --aggressive --prune=all
     fi
 done
