@@ -27,6 +27,6 @@ rsync -av --delete --one-file-system --partial \
   --link-dest="${current}" "${HOME}" "${backup}"
 
 rm -fv "${current}"
-ln -s "${backup}" "${current}"
+ln -sv "${backup}" "${current}"
 
 echo "Done."
