@@ -12,21 +12,22 @@
 
 USAGE="createramdisk-debian <DIR> <SIZE>"
 
-if [ "{$1}" == "" ] ; then
+
+if [ "${1}" == "" ] ; then
   echo "No direcotry given!"
   echo "${USAGE}"
   exit 1
 fi
 
-RAM_DIR="{$1}"
+RAM_DIR="${1}"
 
-if [ "{$2}" == "" ] ; then
+if [ "${2}" == "" ] ; then
   echo "No sizey given!"
   echo "${USAGE}"
   exit 1
 fi
 
-SIZE="{$2}"
+SIZE="${2}"
 
 mkdir -p "${RAM_DIR}"
 mount -t tmpfs -o size="${SIZE}" tmpfs "${RAM_DIR}"
