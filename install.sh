@@ -14,17 +14,17 @@ function linkFile {
     if [ -f "${target}" ] || [ -d "${target}" ]; then
         if [ ! -L "${target}" ]; then
         	echo "Backing up ${target}"
-            mv "${target}" "${target}.bak"
+            mv -v "${target}" "${target}.bak"
         fi
     fi
 
-    ln -sf "${source}" "${target}"
+    ln -svf "${source}" "${target}"
 }
 
 targetDir="${HOME}/bin"
 
 if [ ! -d "${targetDir}" ]; then
-    mkdir -p "${targetDir}"
+    mkdir -vp "${targetDir}"
 fi
 
 for i in src/*.sh
