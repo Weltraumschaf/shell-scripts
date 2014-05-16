@@ -13,6 +13,11 @@ prefix="backup_${now}"
 
 backupDir="/media/Backup"
 
+if [ ! -d "${backupDir}"]; then
+  echo "Target directory '${backupDir}' not mounted!"
+  exit 1
+fi
+
 backupFileName="${prefix}.tar"
 tmpDir="${backupDir}/${prefix}"
 
@@ -25,7 +30,7 @@ cd "${tmpDir}"
 sourceDir="/home/Sven.Strittmatter"
 echo "Back up home dir ${sourceDir} ..."
 tar cvpSf "Sven.Strittmatter.tar.bz2" \
-  --one-file-system "${sourceDir}" \
+  --one-file-system \
   --use-compress-program=pbzip2 \
   --exclude="${sourceDir}/.cache" \
   --exclude="${sourceDir}/Dropbox" \
@@ -37,8 +42,11 @@ tar cvpSf "Sven.Strittmatter.tar.bz2" \
   --exclude="${sourceDir}/.m2/repository" \
   "${sourceDir}"
 
-echo "Backup /etc ..."
-tar cpSjvf etc.tar.bz2 /etc
+#echo "Backup /etc ..."
+#tar cvpSf "etc.tar.bz2" \
+#  --use-compress-program=pbzip2 \
+#  --one-file-system \
+#  "/etc"
 
 echo "Backing up installed packages ..."
 # To restore
@@ -54,4 +62,4 @@ tar cvf "${backupDir}/${backupFileName}" "${tmpDir}"
 echo "Removing tmp dir ${tmpDir} ..."
 rm -rvf "${tmpDir}"
 
-echo "Done."
+echo "Done :)"
