@@ -10,6 +10,7 @@ fi
 
 echo "Cherry-picking all commits from file ${LIST_FILE} ..."
 
+COUNT=1
 IFS=$'\n'
 for commit in $(cat "${LIST_FILE}") ; do
   hash=$(echo ${commit} | cut -d$'\t' -f 1)
@@ -22,4 +23,9 @@ for commit in $(cat "${LIST_FILE}") ; do
     echo "There are conflicts to resolve!"
     read -p "Press [ENTER] key if you have resolved the conflicts and to continue ..."
   fi
+
+  COUNT=$((COUNT+1))
 done
+
+read -p "If you want to rebase the last ${COUNT} commits, hit [ENTER] or Ctrl + c to abort."
+git rebase -i HEAD~${COUNT}
