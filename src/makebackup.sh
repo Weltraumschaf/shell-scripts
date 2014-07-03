@@ -4,13 +4,6 @@ set -e
 
 echo "Making backup..."
 
-# %F  full date; same as %Y-%m-%d
-# %H  hour (00..23)
-# %M  minute (00..59)
-# %S  second (00..60)
-now="$(date +%F_%H-%M-%S)"
-prefix="backup_${now}"
-
 backupDir="/media/Backup"
 
 if [ ! -d "${backupDir}"]; then
@@ -18,18 +11,17 @@ if [ ! -d "${backupDir}"]; then
   exit 1
 fi
 
-backupFileName="${prefix}.tar"
-tmpDir="${backupDir}/${prefix}"
-
-echo "Creating tmp dir ${tmpDir} ..."
-mkdir -p "${tmpDir}"
-
-echo "Change into directory ${tmpDir} ..."
-cd "${tmpDir}"
-
+# %F  full date; same as %Y-%m-%d
+# %H  hour (00..23)
+# %M  minute (00..59)
+# %S  second (00..60)
+now="$(date +%F_%H-%M-%S)"
+backupFileName="${backupDir}/backup_homedir_${now}.tar.bz2"
 sourceDir="/home/Sven.Strittmatter"
-echo "Back up home dir ${sourceDir} ..."
-tar cvpSf "Sven.Strittmatter.tar.bz2" \
+
+echo "Back up home dir ${sourceDir} to ${backupFileName}..."
+
+tar cvpSf "${backupFileName}" \
   --one-file-system \
   --use-compress-program=pbzip2 \
   --exclude="${sourceDir}/.cache" \
@@ -41,25 +33,5 @@ tar cvpSf "Sven.Strittmatter.tar.bz2" \
   --exclude="${sourceDir}/.local/share/Trash" \
   --exclude="${sourceDir}/.m2/repository" \
   "${sourceDir}"
-
-#echo "Backup /etc ..."
-#tar cvpSf "etc.tar.bz2" \
-#  --use-compress-program=pbzip2 \
-#  --one-file-system \
-#  "/etc"
-
-echo "Backing up installed packages ..."
-# To restore
-# sudo dpkg --set-selections < /tmp/dpkglist.txt
-# sudo apt-get -y update
-# sudo apt-get dselect-upgrade
-dpkg --get-selections > dpkglist.txt
-bzip2 dpkglist.txt
-
-echo "Create final archive ${backupDir}/${backupFileName} ..."
-tar cvf "${backupDir}/${backupFileName}" "${tmpDir}"
-
-echo "Removing tmp dir ${tmpDir} ..."
-rm -rvf "${tmpDir}"
 
 echo "Done :)"
