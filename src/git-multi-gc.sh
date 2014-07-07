@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#
+# Expires the reflog and performe an GC in each git repository in the
+# current work direcotry.
+#
+
 CWD=$(pwd)
 
 for dir in $(ls -1 .) ; do
