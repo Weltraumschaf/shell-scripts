@@ -9,8 +9,10 @@
 ## http://mxcl.github.com/homebrew/
 ##
 
-formulas="coreutils aircrack-ng arping git htop jed john imagemagick nmap maven pwgen rhino scala svn tree unrar wget wireshark"
+formulas="coreutils aircrack-ng arping git htop jed john imagemagick nmap maven pwgen rhino scala svn tree unrar wget"
 
 for formula in $formulas ; do
     brew install $formula
 done
+
+brew install wireshark --with-qt
