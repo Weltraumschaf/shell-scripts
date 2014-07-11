@@ -9,7 +9,17 @@ CWD=$(pwd)
 
 for dir in $(ls -1 .) ; do
   if [ "${dir}" != "." ] && [ "${dir}" != ".." ] && [ -d "${dir}/.git" ] ; then
-    echo -n "${dir}:"
+    echo -en "${dir}\t"
+    size=${#dir}
+
+    if [ $size -lt 8 ] ; then
+      echo -en "\t"
+    fi
+
+    if [ $size -lt 16 ] ; then
+      echo -en "\t"
+    fi
+
     repo="${CWD}/${dir}"
     cd "${repo}"
     git status -sb
