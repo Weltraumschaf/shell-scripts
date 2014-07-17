@@ -12,7 +12,7 @@ for repo in $(ls -1 .) ; do
   if [ "${repo}" != "." ] && [ "${repo}" != ".." ] && [ -d "${repo}/.git" ] ; then
     cd "${CWD}/${repo}"
 
-    if [ -n "$(git status --porcelain)" ] ; then
+    if [ -n "$(git status --porcelain)" ] || [ "master" != "$(git rev-parse --abbrev-ref HEAD)" ] ; then
       HAS_CHANGES=1
       status=$(git status -sb --untracked-files=all)
 
