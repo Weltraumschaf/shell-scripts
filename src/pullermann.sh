@@ -16,11 +16,19 @@ do
 
     if [ -d "${fullPath}" ]; then
         echo "Try to pull ${fullPath}..."
-        cd "${fullPath}" \
-          && git stash \
-          && git checkout "${BRANCH}" \
-          && git pull origin "${BRANCH}" \
-          && git stash pop
+        cd "${fullPath}"
+        stashed=false
+
+        if [ "$(git status --porcelain)" != "" ] ; then
+          git stash
+          stashed=true
+        fi
+
+        git checkout "${BRANCH}" && git pull origin "${BRANCH}"
+
+        if [ stashed == true ] ; then
+          git stash pop
+        fi
     fi
 done
 
