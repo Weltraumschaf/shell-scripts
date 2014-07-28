@@ -13,10 +13,14 @@ echo "Pulling branch ${BRANCH} for all repos in ${CWD}..."
 for repo in $(ls -1)
 do
     fullPath="${CWD}/${repo}"
-    
-    if [ -d "${fullPath}" ]; then 
+
+    if [ -d "${fullPath}" ]; then
         echo "Try to pull ${fullPath}..."
-        cd "${fullPath}" && git checkout "${BRANCH}" && git pull origin "${BRANCH}"
+        cd "${fullPath}" \
+          && git stash \
+          && git checkout "${BRANCH}" \
+          && git pull origin "${BRANCH}" \
+          && git stash pop
     fi
 done
 
