@@ -13,10 +13,22 @@ echo "Pulling branch ${BRANCH} for all repos in ${CWD}..."
 for repo in $(ls -1)
 do
     fullPath="${CWD}/${repo}"
-    
-    if [ -d "${fullPath}" ]; then 
+
+    if [ -d "${fullPath}" ]; then
         echo "Try to pull ${fullPath}..."
-        cd "${fullPath}" && git checkout "${BRANCH}" && git pull origin "${BRANCH}"
+        cd "${fullPath}"
+        stashed=false
+
+        if [ "$(git status --porcelain)" != "" ] ; then
+          git stash
+          stashed=true
+        fi
+
+        git checkout "${BRANCH}" && git pull origin "${BRANCH}"
+
+        if [ stashed == true ] ; then
+          git stash pop
+        fi
     fi
 done
 

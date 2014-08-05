@@ -6,23 +6,34 @@
 #
 
 CWD=$(pwd)
+HAS_CHANGES=0
 
-for dir in $(ls -1 .) ; do
-  if [ "${dir}" != "." ] && [ "${dir}" != ".." ] && [ -d "${dir}/.git" ] ; then
-    echo -en "${dir}\t"
-    size=${#dir}
+for repo in $(ls -1 .) ; do
+  if [ "${repo}" != "." ] && [ "${repo}" != ".." ] && [ -d "${repo}/.git" ] ; then
+    cd "${CWD}/${repo}"
 
-    if [ $size -lt 8 ] ; then
-      echo -en "\t"
+    if [ -n "$(git status --porcelain)" ] || [ "master" != "$(git rev-parse --abbrev-ref HEAD)" ] ; then
+      HAS_CHANGES=1
+      status=$(git status -sb --untracked-files=all)
+
+      echo -en "${repo}\t"
+      size=${#repo}
+
+      if [ $size -lt 8 ] ; then
+        echo -en "\t"
+      fi
+
+      if [ $size -lt 16 ] ; then
+        echo -en "\t"
+      fi
+
+      echo "${status}"
     fi
 
-    if [ $size -lt 16 ] ; then
-      echo -en "\t"
-    fi
-
-    repo="${CWD}/${dir}"
-    cd "${repo}"
-    git status -sb
     cd "${CWD}"
   fi
 done
+
+if [ $HAS_CHANGES == 0 ] ; then
+  echo "No changes at all."
+fi
