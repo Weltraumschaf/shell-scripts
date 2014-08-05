@@ -16,7 +16,7 @@ for extension in *jar *swf *swc; do
 done
 
 for file in `cat ${OLDFILES}`; do
-  rm -rf "${file}";
+  rm -rfv "${file}";
 done
 
 rm "${OLDFILES}"
