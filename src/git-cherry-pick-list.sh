@@ -27,5 +27,4 @@ for commit in $(cat "${LIST_FILE}") ; do
   COUNT=$((COUNT+1))
 done
 
-read -p "If you want to rebase the last ${COUNT} commits, hit [ENTER] or Ctrl + c to abort."
-git rebase -i HEAD~${COUNT}
+echo "Maybe you want to rebase: git rebase -i HEAD~${COUNT}"
