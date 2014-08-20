@@ -1,5 +1,36 @@
 #!/bin/bash
 
+function pull {
+    cwd="${1}"
+    repo="${2}"
+    branch="${3}"
+
+    fullPath="${cwd}/${repo}"
+
+    if [ -d "${fullPath}" ]; then
+        echo "Try to pull ${fullPath}..."
+        cd "${fullPath}"
+
+        if [ ! -d ".git" ] ; then
+            echo "Not a git repo!"
+            return
+        fi
+
+        stashed=false
+
+        if [ "$(git status --porcelain)" != "" ] ; then
+            git stash
+            stashed=true
+        fi
+
+        git checkout "${branch}" && git pull origin "${branch}"
+
+        if [ stashed == true ] ; then
+            git stash pop
+        fi
+  fi
+}
+
 CWD=`pwd`
 BRANCH="${1}"
 
@@ -10,26 +41,8 @@ fi
 
 echo "Pulling branch ${BRANCH} for all repos in ${CWD}..."
 
-for repo in $(ls -1)
-do
-    fullPath="${CWD}/${repo}"
-
-    if [ -d "${fullPath}" ]; then
-        echo "Try to pull ${fullPath}..."
-        cd "${fullPath}"
-        stashed=false
-
-        if [ "$(git status --porcelain)" != "" ] ; then
-          git stash
-          stashed=true
-        fi
-
-        git checkout "${BRANCH}" && git pull origin "${BRANCH}"
-
-        if [ stashed == true ] ; then
-          git stash pop
-        fi
-    fi
+for repo in $(ls -1) ; do
+    pull "${CWD}" "${repo}" "${BRANCH}"
 done
 
 cd $CWD
