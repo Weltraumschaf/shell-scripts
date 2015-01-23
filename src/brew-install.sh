@@ -9,7 +9,7 @@
 ## http://mxcl.github.com/homebrew/
 ##
 
-formulas="coreutils aircrack-ng arping git htop jed john imagemagick nmap maven pwgen rhino scala svn tree unrar wget"
+formulas="coreutils aircrack-ng arping git htop jed john imagemagick nmap maven pwgen rhino scala svn tree tmux unrar wget"
 
 for formula in $formulas ; do
     brew install $formula
