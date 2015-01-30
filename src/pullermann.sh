@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#
+# This script changes into all subdirectories of the current working directory
+# (CWD) and pulls the given branch for that repo. If a subdirecotry is not a git
+# repo it will be ommitted. Any open changes will be stashed.
+#
+# Usage: pullermann <BRANCHNAME>
+#
+
 function pull {
     cwd="${1}"
     repo="${2}"
