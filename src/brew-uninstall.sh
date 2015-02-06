@@ -4,8 +4,8 @@
 
 cd `brew --prefix`
 rm -rf Cellar
-rm `git ls-files`
 brew prune
-rm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions
+for f in  $(git ls-files); do rm -v "${f}"; done
+rm -rf  Library/Homebrew
 rm -rf .git
 rm -rf ~/Library/Caches/Homebrew
