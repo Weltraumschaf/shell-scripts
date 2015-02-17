@@ -3,7 +3,8 @@
 dir="${1}"
 cwd=$(pwd)
 #vlc="/Applications/VLC.app/Contents/MacOS/VLC"
-vlc="/opt/homebrew-cask/Caskroom/vlc/2.1.5/VLC.app/Contents/MacOS/VLC"
+#vlc="/opt/homebrew-cask/Caskroom/vlc/2.1.5/VLC.app/Contents/MacOS/VLC"
+vlc=vlc
 
 echo "Make thumbs of movies in ${dir} ..."
 
@@ -12,7 +13,7 @@ find "${dir}" -type f | egrep -i "\.(avi|flv|mov|mp4|mpeg|mpg|wmv)$" | while rea
     # https://wiki.videolan.org/How_to_create_thumbnails/
     thumbdir="${cwd}${file%.*}"
     mkdir -p "${thumbdir}"
-    "${vlc}" \
+    $vlc \
         --rate=1 \
         --video-filter=scene \
         --vout=dummy \
@@ -24,8 +25,5 @@ find "${dir}" -type f | egrep -i "\.(avi|flv|mov|mp4|mpeg|mpg|wmv)$" | while rea
         --scene-prefix=snap \
         --scene-path="${thumbdir}" \
         --play-and-exit \
-        "${file}" vlc://quit &
-        sleep 2
-        pkill vlc
-        exit
+        "${file}" vlc://quit
 done
