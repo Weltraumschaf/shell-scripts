@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ##
 ## Uninstalls the scripts from $HOME/bin by removing the symlinks.
@@ -17,7 +17,7 @@ function unlinkFile {
     targetFile="${1/src\//}"
     targetFile="${targetFile/\.sh/}"
     target="${2}/${targetFile}"
-    
+
     rm -v "${target}"
 }
 

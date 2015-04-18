@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ##
 ## Installs the scripts to $HOME/bin by symlinking them.
