@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 # http://stackoverflow.com/questions/5276253/create-a-silent-mp3-from-the-command-line
 $seconds = $ARGV[0];

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # http://blog.interlinked.org/tutorials/rsync_time_machine.html
 

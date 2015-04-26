@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # To restore
 # sudo dpkg --set-selections < /tmp/dpkglist.txt

@@ -1,4 +1,5 @@
-#!/usr/bin/env bash 
+#!/usr/bin/env bash
+
 # useradd.sh v1.2
 # (cc) 2006 Filipp Lepalaan <filipp@mac.com>
 # Updated to support both Tiger & Leopard <filipp@mac.com>

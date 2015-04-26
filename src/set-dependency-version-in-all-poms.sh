@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Usage: ./set-dependency-version-in-all-poms.sh "de.icongmbh.dopix.editor.commons.variables.model" "1.2.0-SNAPSHOT"
 #

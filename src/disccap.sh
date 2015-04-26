@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 
 function getDiskUsage($disk) {
@@ -7,7 +7,7 @@ function getDiskUsage($disk) {
 
 function stripFirstLine($string) {
     $lines = explode(PHP_EOL, $string);
-    
+
     return $lines[1];
 }
 
@@ -21,12 +21,12 @@ function prepareDataAsArray($string) {
     );
     $parts    = explode(" ", $string);
     $position = 0;
-    
+
     foreach ($parts as $index => $partial) {
         if (empty($partial)) {
             continue;
         }
-        
+
         switch ($position) {
             case 1:
                 $result['Size'] = $partial;
@@ -44,10 +44,10 @@ function prepareDataAsArray($string) {
                 $result['Mounted'] = $partial;
                 break;
         }
-        
+
         $position++;
     }
-    
+
     return $result;
 }
 
@@ -66,17 +66,17 @@ foreach ($disks as $index => $disk) {
     $usage = getDiskUsage($disk);
     $usage = stripFirstLine($usage);
     $usage = prepareDataAsArray($usage);
-    
+
     if (0 === $index) {
         foreach (array_keys($usage) as $header) {
             $output .= padCell($header);
         }
-        
+
         $output .= PHP_EOL;
     } else if (0 < $index) {
         $output .= PHP_EOL;
     }
-    
+
     foreach ($usage as $value) {
         $output .= padCell($value);
     }

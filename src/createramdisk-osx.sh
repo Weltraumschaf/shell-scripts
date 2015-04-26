@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ##
 ##
@@ -15,7 +15,7 @@ if [ $# -eq 0 ] ; then
 else
 	if [ $# -eq 2 ] ; then
 		name=$1
-		size=$2	
+		size=$2
 	else
 		echo "Creates and mounts a ramdisk."
 		echo "Usage: ${0} [name size]"

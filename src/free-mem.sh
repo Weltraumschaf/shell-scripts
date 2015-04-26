@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # http://www.upubuntu.com/2011/09/how-to-free-up-ram-on-ubuntudebian.html
 

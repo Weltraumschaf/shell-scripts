@@ -1,4 +1,4 @@
-#!/bin/bash -i
+#!/usr/bin/env bash -i
 
 # http://agentzlerich.blogspot.de/2008/07/using-gnu-screen-with-gnome-terminals.html
 

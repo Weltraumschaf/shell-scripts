@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #
 # http://www.yeap.de/blog2.0/archives/246-Maven-Housekeeping-Cleanup-your-local-repository-on-Linux.html

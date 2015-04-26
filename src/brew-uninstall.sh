@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # https://apple.stackexchange.com/questions/82807/how-to-cleanly-remove-homebrew
 

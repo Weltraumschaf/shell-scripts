@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # see http://simenhag.blogspot.com/2008/11/cleaning-up-macports.html
 

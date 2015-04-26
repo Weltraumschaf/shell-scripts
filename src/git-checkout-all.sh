@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # https://stackoverflow.com/questions/67699/how-do-i-clone-all-remote-branches-with-git
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ##
 ## Sets JDK http://hints.macworld.com/article.php?story=20060121171126988

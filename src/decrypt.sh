@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # http://sleepyhead.de/howto/?href=crypt
 
