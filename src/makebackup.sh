@@ -4,9 +4,9 @@ set -e
 
 echo "Making backup..."
 
-backupDir="/media/Backup"
+backupDir="/media/sven.strittmatter/Backup/"
 
-if [ ! -d "${backupDir}"]; then
+if [ ! -d "${backupDir}" ]; then
   echo "Target directory '${backupDir}' not mounted!"
   exit 1
 fi
@@ -17,7 +17,7 @@ fi
 # %S  second (00..60)
 now="$(date +%F_%H-%M-%S)"
 backupFileName="${backupDir}/backup_homedir_${now}.tar.bz2"
-sourceDir="/home/Sven.Strittmatter"
+sourceDir="/home/ICONGMBH/sven.strittmatter"
 
 echo "Back up home dir ${sourceDir} to ${backupFileName}..."
 
@@ -28,8 +28,6 @@ tar cvpSf "${backupFileName}" \
   --exclude="${sourceDir}/Dropbox" \
   --exclude="${sourceDir}/.dropbox" \
   --exclude="${sourceDir}/.Skype" \
-  --exclude="${sourceDir}/.java" \
-  --exclude="*.class" \
   --exclude="${sourceDir}/.local/share/Trash" \
   --exclude="${sourceDir}/.m2/repository" \
   "${sourceDir}"

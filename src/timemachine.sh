@@ -4,7 +4,7 @@
 
 set -e
 
-baseDir="/media/Backup/Timemachine"
+baseDir="/media/sven.strittmatter/Backup/Timemachine"
 
 if [ ! -d "${baseDir}" ] ; then
   echo "Target dir '${baseDir}' does not exists!"
@@ -20,8 +20,6 @@ rsync -av --delete --one-file-system --partial \
   --exclude='Dropbox' \
   --exclude='.dropbox' \
   --exclude='.Skype' \
-  --exclude='.java' \
-  --exclude='*.class' \
   --exclude='.local/share/Trash' \
   --exclude='.m2/repository' \
   --link-dest="${current}" "${HOME}" "${backup}"
