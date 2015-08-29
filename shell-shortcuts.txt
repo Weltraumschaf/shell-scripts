@@ -1,0 +1,9 @@
+Ctrl + A    Home
+Ctrl + E    End
+Ctrl + U    Clear line
+Ctrl + K    Clear line from cursor to end
+Ctrl + W    Delete word before cursor
+!!          Last command again
+!cat        Last command with cat
+!cat:p      --"--, but only print it
+!$          Args from last command e.g.: mkdir foo/bar && cd !$
