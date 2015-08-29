@@ -17,7 +17,7 @@ fi
 # %S  second (00..60)
 now="$(date +%F_%H-%M-%S)"
 backupFileName="${backupDir}/backup_homedir_${now}.tar.bz2"
-sourceDir="/home/ICONGMBH/sven.strittmatter"
+sourceDir="/home/ICONGMBH.DE/sven.strittmatter"
 
 echo "Back up home dir ${sourceDir} to ${backupFileName}..."
 
@@ -25,11 +25,13 @@ tar cvpSf "${backupFileName}" \
   --one-file-system \
   --use-compress-program=pbzip2 \
   --exclude="${sourceDir}/.cache" \
+  --exclude="${sourceDir}/.ccache" \
   --exclude="${sourceDir}/Dropbox" \
   --exclude="${sourceDir}/.dropbox" \
   --exclude="${sourceDir}/.Skype" \
   --exclude="${sourceDir}/.local/share/Trash" \
   --exclude="${sourceDir}/.m2/repository" \
+  --exclude="${sourceDir}/log" \
   "${sourceDir}"
 
 echo "Done :)"
