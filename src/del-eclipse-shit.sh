@@ -2,6 +2,8 @@
 
 CWD=`pwd`
 
+echo "Cleaning ${CWD} from eclipse crap files..."
+
 find "${CWD}" -type d -name "target" | xargs rm -rfv
 find "${CWD}" -type d -name "\.settings" | xargs rm -rfv
 find "${CWD}" -type f -name "\.project" | xargs rm -v
