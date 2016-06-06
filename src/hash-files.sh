@@ -15,4 +15,4 @@ if [ ! -d "${basedir}" ] ; then
     exit 1
 fi
 
-find "${basedir}" -type f -print0 | xargs -0 sha256 > "${basedir}/.checksums"
+find "${basedir}" -type f -exec sha256 {} \; > "${basedir}/.checksums"
