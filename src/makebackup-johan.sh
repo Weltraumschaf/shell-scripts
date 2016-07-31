@@ -1,13 +1,28 @@
 #!/bin/bash
 
+PROGRAM="${0}"
+
+while [ -h "${PROGRAM}" ]; do
+  LS=`ls -ld "${PROGRAM}"`
+  LINK=`expr "${LS}" : '.*-> \(.*\)$'`
+
+  if expr "${LINK}" : '.*/.*' > /dev/null; then
+    PROGRAM="${LINK}"
+  else
+    PROGRAM=`dirname "${PROGRAM}"`/"${LINK}"
+  fi
+done
+
+PROGRAM_DIRECTORY=`dirname "${PROGRAM}"`
+
 today="$(date +%Y-%m-%d)"
 
-if [ ! -e ./makebackup-johan.config ] ; then
-    echo "No config file present: makebackup-johan.config"
+if [ ! -e "${PROGRAM_DIRECTORY}/makebackup-johan.config" ] ; then
+    echo "No config file present: ${PROGRAM_DIRECTORY}/makebackup-johan.config"
     exit 1
 fi
 
-source ./makebackup-johan.config
+source "${PROGRAM_DIRECTORY}/makebackup-johan.config"
 
 echo "=================================="
 echo "== Making backup ${today} ... =="
