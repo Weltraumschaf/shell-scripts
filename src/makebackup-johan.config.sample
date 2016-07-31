@@ -1,0 +1,4 @@
+backupUser="user"
+backupHost="host"
+backupPort="port"
+backupTargetDir="dir"
