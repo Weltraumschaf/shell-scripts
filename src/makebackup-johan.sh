@@ -85,7 +85,8 @@ echo "Generate ${backupFileName}"
 tar cvf "${backupFileName}" "./${backupBaseDir}"
 
 echo "Putting backup to ${backupHost}"
-scp -P${backupPort} \
+scp -i ~/.ssh/id_rsa \
+    -P${backupPort} \
     "./${backupFileName}" \
     "${backupUser}@${backupHost}:${backupTargetDir}"
 
