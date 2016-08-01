@@ -85,10 +85,27 @@ echo "Generate ${backupFileName}"
 tar cvf "${backupFileName}" "./${backupBaseDir}"
 
 echo "Putting backup to ${backupHost}"
-scp -i ~/.ssh/id_rsa \
-    -P${backupPort} \
-    "./${backupFileName}" \
-    "${backupUser}@${backupHost}:${backupTargetDir}"
+# http://x-ian.net/2009/05/15/resume-rsync-transfer-after-ssh-connection-crash/
+I=0
+MAX_RESTARTS=5
+LAST_EXIT_CODE=1
+while [ $I -le $MAX_RESTARTS ] ; do
+	I=$(( $I + 1 ))
+	echo "$I. start of rsync..."
+	rsync -av --partial -e "ssh -i ~/.ssh/id_rsa" \
+		"./${backupFileName}" \
+		"${backupUser}@${backupHost}:${backupTargetDir}"
+	LAST_EXIT_CODE=$?
+	
+	if [ $LAST_EXIT_CODE -eq 0 ]; then
+		break
+	fi
+done
+
+if [ $LAST_EXIT_CODE -ne 0 ]; then
+  echo "ERROR: rsync failed for $I times. giving up."
+  exit 1
+fi
 
 echo "Removing ${backupDir} ${backupFileName} ..."
 rm -rfv "./${backupBaseDir}"
