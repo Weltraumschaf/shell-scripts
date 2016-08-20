@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e
+
 BACKUP_TO_VERIFY="${1}"
 
 if [ "${BACKUP_TO_VERIFY}" == "" ] ; then
@@ -15,7 +17,7 @@ fi
 CWD=$(pwd)
 
 cd /storage/backups/johan.weltraumschaf.de
-tar xvf 
+tar xvf "${BACKUP_TO_VERIFY}"
 
 cd backup/
 find . -name "*.bz2" | xargs pbunzip2 -v
