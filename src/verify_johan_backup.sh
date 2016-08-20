@@ -21,5 +21,6 @@ tar xvf "${BACKUP_TO_VERIFY}"
 
 cd backup/
 find . -name "*.bz2" | xargs pbunzip2 -v
+find . -name "*.tar" | xargs tar xvf
 
 cd "${CWD}"
