@@ -92,16 +92,16 @@ I=0
 MAX_RESTARTS=5
 LAST_EXIT_CODE=1
 while [ $I -le $MAX_RESTARTS ] ; do
-	I=$(( $I + 1 ))
-	echo "$I. start of rsync..."
-	rsync -av --partial --progress -e "ssh -p${backupPort}" \
-		"./${backupFileName}" \
-		"${backupUser}@${backupHost}:${backupTargetDir}"
-	LAST_EXIT_CODE=$?
-	
-	if [ $LAST_EXIT_CODE -eq 0 ]; then
-		break
-	fi
+  I=$(( $I + 1 ))
+  echo "$I. start of rsync..."
+  rsync -av --partial --progress -e "ssh -p${backupPort}" \
+    "./${backupFileName}" \
+      "${backupUser}@${backupHost}:${backupTargetDir}"
+  LAST_EXIT_CODE=$?
+
+  if [ $LAST_EXIT_CODE -eq 0 ]; then
+    break
+  fi
 done
 
 if [ $LAST_EXIT_CODE -ne 0 ]; then
