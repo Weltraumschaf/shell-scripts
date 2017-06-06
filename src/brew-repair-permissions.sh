@@ -10,11 +10,15 @@ chgrp -R admin /usr/local
 chmod -R g+w /usr/local
 
 # allow admins to homebrew's local cache of formulae and source files
-chgrp -R admin /Library/Caches/Homebrew
-chmod -R g+w /Library/Caches/Homebrew
+if [ -d /Library/Caches/Homebrew ]; then
+  chgrp -R admin /Library/Caches/Homebrew
+  chmod -R g+w /Library/Caches/Homebrew
+fi
 
 # if you are using cask then allow admins to manager cask install too
-chgrp -R admin /opt/homebrew-cask
-chmod -R g+w /opt/homebrew-cask
+if [ -d /opt/homebrew-cask ]; then
+  chgrp -R admin /opt/homebrew-cask
+  chmod -R g+w /opt/homebrew-cask
+fi
 
 echo "Finished :)"
