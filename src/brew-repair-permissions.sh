@@ -9,7 +9,7 @@
 chgrp -R admin /usr/local
 chmod -R g+w /usr/local
 chmod -R a+rX /usr/local
-chmod a+x /usr/local/bin
+chmod -h a+rX /usr/local/bin/*
 
 # allow admins to homebrew's local cache of formulae and source files
 if [ -d /Library/Caches/Homebrew ]; then
