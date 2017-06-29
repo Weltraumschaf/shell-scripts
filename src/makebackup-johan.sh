@@ -35,8 +35,11 @@ backupDir="/var/data/${backupBaseDir}"
 backupFileName="backup_$today.tar"
 svnDir=/var/svn
 
-echo "Removing ${backupDir}..."
-rm -rfv "${backupDir}"
+if [ -e "${backupDir}" ]; then
+    echo "Removing ${backupDir}..."
+    rm -rfv "${backupDir}"
+fi
+
 echo "Creating ${backupDir}..."
 mkdir -pv "${backupDir}"
 echo "Change into directory ${backupDir}..."
@@ -113,4 +116,4 @@ echo "Removing ${backupDir} ${backupFileName} ..."
 rm -rfv "./${backupBaseDir}"
 rm -rfv "./${backupFileName}"
 
-echo "Done :-)"
+echo 'Done :-)'
