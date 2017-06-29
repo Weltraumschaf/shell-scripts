@@ -32,7 +32,7 @@ echo "=================================="
 
 backupBaseDir="backup"
 backupDir="/var/data/${backupBaseDir}"
-backupFileName="backup_$today.tar"
+backupFileName="backup_${today}.tar"
 svnDir=/var/svn
 
 if [ -e "${backupDir}" ]; then
@@ -48,14 +48,14 @@ cd "${backupDir}"
 mysqlUser=""
 mysqlPassword=""
 
-if [ -f "/etc/mysql/debian.cnf" ] && [ -z "$mysqlUser" ]; then
+if [ -f "/etc/mysql/debian.cnf" ] && [ -z "${mysqlUser}" ]; then
    mysqlUser="$(grep "^user" /etc/mysql/debian.cnf | sed 's@^user[ \t=]*@@' | tail -n 1)"
    mysqlPassword="$(grep "^password" /etc/mysql/debian.cnf | sed 's@^password[ \t=]*@@' | tail -n 1)"
 fi
 
 echo "Dumping all mysql databases as ${mysqlUser}..."
 
-if [ -z "$mysqlPassword" ]; then
+if [ -z "${mysqlPassword}" ]; then
    echo "No Debian user for MySQL user ${mysqlUser} found!"
    exit 1
 fi
