@@ -45,6 +45,8 @@ mkdir -pv "${backupDir}"
 echo "Change into directory ${backupDir}..."
 cd "${backupDir}"
 
+echo "Dumping all mysql databases as ${mysqlUser}..."
+
 mysqlUser=""
 mysqlPassword=""
 
@@ -52,8 +54,6 @@ if [ -f "/etc/mysql/debian.cnf" ] && [ -z "${mysqlUser}" ]; then
    mysqlUser="$(grep "^user" /etc/mysql/debian.cnf | sed 's@^user[ \t=]*@@' | tail -n 1)"
    mysqlPassword="$(grep "^password" /etc/mysql/debian.cnf | sed 's@^password[ \t=]*@@' | tail -n 1)"
 fi
-
-echo "Dumping all mysql databases as ${mysqlUser}..."
 
 if [ -z "${mysqlPassword}" ]; then
    echo "No Debian user for MySQL user ${mysqlUser} found!"
@@ -80,7 +80,7 @@ done
 sourceDirs="etc home root var opt"
 for sourceDir in $sourceDirs; do
     echo "Backing up /${sourceDir}..."
-    tar cvpSf "${sourceDir}.tar.bz2" \
+    tar cpSf "${sourceDir}.tar.bz2" \
         --one-file-system "/${sourceDir}" \
         --use-compress-program=pbzip2
 done
