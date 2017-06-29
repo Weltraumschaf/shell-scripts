@@ -72,7 +72,7 @@ mkdir "${svnDumpDir}"
 
 for fileName in $(ls $svnDir) ; do
     svnRepo="${svnDir}/${fileName}"
-    echo "Dumping ${svnRepo}..."
+    echo "Dumping SVN ${svnRepo} into ${svnRepoDump} ..."
     svnRepoDump="${svnDumpDir}/${fileName}.dump"
     svnadmin dump "${svnRepo}" > "${svnRepoDump}"
     echo "Compressing ${svnRepoDump}..."
