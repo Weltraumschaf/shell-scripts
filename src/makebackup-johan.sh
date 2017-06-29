@@ -71,10 +71,12 @@ svnDumpDir="${backupDir}/svndumps"
 mkdir "${svnDumpDir}"
 
 for fileName in $(ls $svnDir) ; do
-    echo "Dumping ${svnDir}/${fileName}..."
-    svnadmin dump ${svnDir}/${fileName} > ${svnDumpDir}/${fileName}.dump
-    echo "Compressing ${svnDumpDir}/${fileName}.dump..."
-    pbzip2 ${svnDumpDir}/${fileName}.dump
+    svnRepo="${svnDir}/${fileName}"
+    echo "Dumping ${svnRepo}..."
+    svnRepoDump="${svnRepo}.dump"
+    svnadmin dump "${svnRepo}" > "${svnRepoDump}"
+    echo "Compressing ${svnRepoDump}..."
+    pbzip2 "${svnRepoDump}"
 done
 
 sourceDirs="etc home root var opt"
