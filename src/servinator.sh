@@ -4,7 +4,7 @@ set -e
 set -u
 
 usage="Usage: ${0} <input-file> <output-dir>"
-example="Example: ${0} src/main/resources/services.properties src/main/resources/META-INF/services"
+example="Example: ${0} src/main/resources/services.properties OSGI-INF"
 
 function help {
     echo "${usage}"
@@ -40,7 +40,15 @@ fi
 cat "${inputFile}" | while read line; do
     interface=$(echo "${line}" | cut -d '=' -f 1)
     implementation=$(echo "${line}" | cut -d '=' -f 2)
-    echo "${implementation}" > "${outputDir}/${interface}"
+    xmlFile="${outputDir}/${interface}.xml"
+    
+    echo '<?xml version="1.0" encoding="UTF-8"?>' > "${xmlFile}"
+    echo "<scr:component xmlns:scr=\"http://www.osgi.org/xmlns/scr/v1.1.0\" name=\"${implementation}\">" >>  "${xmlFile}"
+    echo "   <implementation class=\"${implementation}\"/>" >>  "${xmlFile}"
+    echo '   <service>' >>  "${xmlFile}"
+    echo "      <provide interface=\"${interface}\"/>" >>  "${xmlFile}"
+    echo '   </service>' >>  "${xmlFile}"
+    echo '</scr:component>' >>  "${xmlFile}"
 done 
 
 echo 'Done :-)'
