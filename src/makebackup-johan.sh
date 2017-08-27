@@ -46,10 +46,9 @@ mkdir -pv "${backupDir}"
 echo "Change into directory ${backupDir}..."
 cd "${backupDir}"
 
-echo "Dumping all mysql databases as ${mysqlUser}..."
-
 mysqlUser=""
 mysqlPassword=""
+echo "Dumping all mysql databases as ${mysqlUser}..."
 
 if [ -f "/etc/mysql/debian.cnf" ] && [ -z "${mysqlUser}" ]; then
    mysqlUser="$(grep "^user" /etc/mysql/debian.cnf | sed 's@^user[ \t=]*@@' | tail -n 1)"
