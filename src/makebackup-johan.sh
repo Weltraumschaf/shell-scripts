@@ -86,7 +86,7 @@ for sourceDir in $sourceDirs; do
 
     if [[ "${sourceDir}" == "var" ]]; then
         ignonres="--exclude=var/cache"
-    if [[ "${sourceDir}" == "home" ]]; then
+    elif [[ "${sourceDir}" == "home" ]]; then
         ignonres="--exclude=home/sxs/.m2/repository"
     else 
         ignonres=""
@@ -94,18 +94,11 @@ for sourceDir in $sourceDirs; do
 
     echo "Ignoring: ${itgnores}."
 
-    if [[ "${ignonres}" == "" ]]; then
-        tar cpSf "${sourceDir}.tar.bz2" \
-            --one-file-system \
-            --use-compress-program=pbzip2 \
-            "/${sourceDir}"
-    else
-        tar cpSf "${sourceDir}.tar.bz2" \
-            --one-file-system \
-            ${ignonres} \
-            --use-compress-program=pbzip2 \
-            "/${sourceDir}"
-    fi
+    tar cpSf "${sourceDir}.tar.bz2" \
+        --one-file-system \
+        ${ignonres} \
+        --use-compress-program=pbzip2 \
+        "/${sourceDir}"
 done
 
 cd ..
