@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+set -u
 
 PROGRAM="${0}"
 
@@ -79,11 +80,24 @@ for fileName in $(ls $svnDir) ; do
     pbzip2 "${svnRepoDump}"
 done
 
+ignonres=""
 sourceDirs="etc home root var opt"
 for sourceDir in $sourceDirs; do
     echo "Backing up /${sourceDir}..."
+    
+    if [[ "${sourceDir}" == "var" ]]; then
+        ignonres="var/cache"
+    if [[ "${sourceDir}" == "home" ]]; then
+        ignonres="home/sxs/.m2/repository"
+    else 
+        ignonres=""
+    fi
+    
+    echo "Ignoring: ${itgnores}."
+    
     tar cpSf "${sourceDir}.tar.bz2" \
         --one-file-system "/${sourceDir}" \
+        --exclude= "${ignonres}" \
         --use-compress-program=pbzip2
 done
 
