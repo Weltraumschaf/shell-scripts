@@ -69,12 +69,11 @@ pbzip2 "all-databases_${today}.sql"
 echo "Dumping all svn repos..."
 svnDumpDir="${backupDir}/svndumps"
 mkdir "${svnDumpDir}"
-svnRepo=""
 
 for fileName in $(ls $svnDir) ; do
     svnRepo="${svnDir}/${fileName}"
-    echo "Dumping SVN ${svnRepo} into ${svnRepoDump} ..."
     svnRepoDump="${svnDumpDir}/${fileName}.dump"
+    echo "Dumping SVN ${svnRepo} into ${svnRepoDump} ..."
     svnadmin dump "${svnRepo}" > "${svnRepoDump}"
     echo "Compressing ${svnRepoDump}..."
     pbzip2 "${svnRepoDump}"
