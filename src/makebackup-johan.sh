@@ -85,9 +85,9 @@ for sourceDir in $sourceDirs; do
     echo "Backing up /${sourceDir}..."
     
     if [[ "${sourceDir}" == "var" ]]; then
-        ignonres="var/cache"
+        ignonres="--exclude=var/cache"
     if [[ "${sourceDir}" == "home" ]]; then
-        ignonres="home/sxs/.m2/repository"
+        ignonres="--exclude=home/sxs/.m2/repository"
     else 
         ignonres=""
     fi
@@ -96,7 +96,7 @@ for sourceDir in $sourceDirs; do
     
     tar cpSf "${sourceDir}.tar.bz2" \
         --one-file-system "/${sourceDir}" \
-        --exclude= "${ignonres}" \
+        ${ignonres} \
         --use-compress-program=pbzip2
 done
 
