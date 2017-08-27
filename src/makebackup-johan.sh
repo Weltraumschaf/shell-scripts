@@ -92,7 +92,7 @@ for sourceDir in $sourceDirs; do
         ignonres=""
     fi
 
-    echo "Ignoring: ${itgnores}."
+    echo "Ignoring: ${ignonres}."
 
     tar cpSf "${sourceDir}.tar.bz2" \
         --one-file-system \
