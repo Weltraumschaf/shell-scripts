@@ -83,7 +83,7 @@ ignonres=""
 sourceDirs="etc home root var opt"
 for sourceDir in $sourceDirs; do
     echo "Backing up /${sourceDir}..."
-    
+
     if [[ "${sourceDir}" == "var" ]]; then
         ignonres="--exclude=var/cache"
     if [[ "${sourceDir}" == "home" ]]; then
@@ -91,13 +91,21 @@ for sourceDir in $sourceDirs; do
     else 
         ignonres=""
     fi
-    
+
     echo "Ignoring: ${itgnores}."
-    
-    tar cpSf "${sourceDir}.tar.bz2" \
-        --one-file-system "/${sourceDir}" \
-        ${ignonres} \
-        --use-compress-program=pbzip2
+
+    if [[ "${ignonres}" == "" ]]; then
+        tar cpSf "${sourceDir}.tar.bz2" \
+            --one-file-system \
+            --use-compress-program=pbzip2 \
+            "/${sourceDir}"
+    else
+        tar cpSf "${sourceDir}.tar.bz2" \
+            --one-file-system \
+            ${ignonres} \
+            --use-compress-program=pbzip2 \
+            "/${sourceDir}"
+    fi
 done
 
 cd ..
