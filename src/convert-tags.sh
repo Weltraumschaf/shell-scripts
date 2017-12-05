@@ -14,6 +14,9 @@ set -e
 #git svn fetch
 #git svn rebase
 
+echo "Clean up the repo ..."
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
+
 # Since tags in svn are real branches, create git tags from tag branches.
 git for-each-ref --format="%(refname:short) %(objectname)" refs/remotes/origin/tags | cut -d / -f 3- | while read ref
 do
