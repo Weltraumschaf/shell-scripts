@@ -9,6 +9,7 @@
 #
 
 set -e
+set -u
 
 # Update repo.
 #git svn fetch
@@ -23,15 +24,19 @@ do
     echo "Import tag for ${ref} ..."
     git tag -a ${ref} -m 'import tag from svn'
 done
+echo "Import done."
 
 # Delete tag branches.
+echo "Delete tag branches ..."
 git for-each-ref --format="%(refname:short)" refs/remotes/origin/tags | cut -d / -f 1- | while read ref
 do 
     echo "Delete tag branch ${ref} ..."
     git branch -rd "${ref}"
 done
+echo "Branch deletion done."
 
 # Since tags marked in the previous step point to a commit "create tag", we need to derive "real" tags, i.e. parents of "create tag" commits.
+echo "Derive tags ..."
 git for-each-ref --format="%(refname:short)" refs/tags | while read ref
 do
     echo "Derive \"real\" tags from \"create tag\" commits ..."
@@ -40,4 +45,4 @@ do
     git tag -a "${tag}" `git rev-list -2 ${ref} | tail -1` -m "proper svn tag"
 done
 
-echo 'Done: All tags converted :-)'
+echo 'Done: All tags converted'
