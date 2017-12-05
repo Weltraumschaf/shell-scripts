@@ -32,9 +32,9 @@ done
 git for-each-ref --format="%(refname:short)" refs/tags | while read ref
 do
     echo "Derive \"real\" tags from \"create tag\" commits ..."
-  tag=`echo $ref | sed 's/_/./g'` # give tags a new name
-  echo $ref -\> $tag
-  git tag -a $tag `git rev-list -2 $ref | tail -1` -m "proper svn tag"
+    tag=`echo $ref | sed 's/_/./g'` # give tags a new name
+    echo $ref -\> $tag
+    git tag -a $tag `git rev-list -2 $ref | tail -1` -m "proper svn tag"
 done
 
-echo 'Done :-)'
+echo 'Done: All tags converted :-)'
