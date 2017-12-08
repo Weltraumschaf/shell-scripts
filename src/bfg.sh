@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -e 
-set -u
 
 # https://rtyley.github.io/bfg-repo-cleaner/
 
