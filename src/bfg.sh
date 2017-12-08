@@ -1,16 +1,9 @@
 #!/usr/bin/env bash
 
-##
-##  LICENSE
-##
-## "THE BEER-WARE LICENSE" (Revision 43):
-## "Sven Strittmatter" <weltraumschaf@googlemail.com> wrote this file.
-## As long as you retain this notice you can do whatever you want with
-## this stuff. If we meet some day, and you think this stuff is worth it,
-## you can buy me a non alcohol-free beer in return.
-##
-## Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
-##
+set -e 
+set -u
+
+# https://rtyley.github.io/bfg-repo-cleaner/
 
 # JVM settings.
 JVM_MIN_HEAP_SPACE="128m"
@@ -32,18 +25,18 @@ done
 
 PROGRAM_DIRECTORY=`dirname "${PROGRAM}"`
 
-# Set BFG_HOME.
-if [ -z "${BFG_HOME}" ] ; then
-    BFG_HOME=`cd "${PROGRAM_DIRECTORY}" ; pwd`
+if [ -z "${BFG_DIR}" ] ; then
+    BFG_DIR=`cd "${PROGRAM_DIRECTORY}" ; pwd`
 fi
 
-JAR="${BFG_HOME}/bfg-1.11.1.jar"
+JAR="${BFG_DIR}/bfg-1.12.16.jar"
 
 if [ ! -f "${JAR}" ] ; then
-    PROJECT_DIR=`dirname "${BFG_HOME}"`
-    echo "ERROR: JAR file ${JAR} not pressent!"
-    echo "Download here http://repo1.maven.org/maven2/com/madgag/bfg/1.11.1/bfg-1.11.1.jar"
+    PROJECT_DIR=`dirname "${BFG_DIR}"`
+    echo "ERROR: JAR file ${JAR} not pressent in ${BFG_DIR}!"
     exit 1
 fi
 
 java ${JVM_OPTIONS} -jar "${JAR}" $@
+
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
