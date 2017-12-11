@@ -37,5 +37,3 @@ if [ ! -f "${JAR}" ] ; then
 fi
 
 java ${JVM_OPTIONS} -jar "${JAR}" $@
-
-git reflog expire --expire=now --all && git gc --prune=now --aggressive
