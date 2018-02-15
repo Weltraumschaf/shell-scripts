@@ -1,17 +1,7 @@
 #!/usr/bin/env bash
 
-##
-##  LICENSE
-##
-## "THE BEER-WARE LICENSE" (Revision 43):
-## "Sven Strittmatter" <weltraumschaf@googlemail.com> wrote this file.
-## As long as you retain this notice you can do whatever you want with
-## this stuff. If we meet some day, and you think this stuff is worth it,
-## you can buy me a non alcohol-free beer in return.
-##
-## Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
-##
-
+set -e
+set -u
 # JVM settings.
 JVM_MIN_HEAP_SPACE="128m"
 JVM_MAX_HEAP_SPACE="1024m"
@@ -39,7 +29,6 @@ fi
 JAR="${JENKINS_DIR}/jenkins.war"
 
 if [ ! -f "${JAR}" ] ; then
-    PROJECT_DIR=`dirname "${JENKINS_DIR}"`
     echo "ERROR: JAR file ${JAR} not pressent in ${JENKINS_DIR}!"
     exit 1
 fi
