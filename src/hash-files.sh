@@ -5,13 +5,13 @@ basedir="${1}"
 
 if [ "" == "${basedir}" ] ; then
     echo "No base dir given!"
-    echo $usage
+    echo "$usage"
     exit 1
 fi
 
-if [ ! -d "${basedir}" ] ; then 
+if [ ! -d "${basedir}" ] ; then
     echo "Not a directory ${basedir}!"
-    echo $usage
+    echo "$usage"
     exit 1
 fi
 

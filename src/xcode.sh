@@ -4,4 +4,4 @@
 ## Short hand to open files in XCode.
 ##
 
-open -a XCode $1
+open -a XCode "$1"

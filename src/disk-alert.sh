@@ -8,11 +8,11 @@ THRESHOLD=90
 HOST=$(hostname)
 
 DISK_INFO=$(df -h / | grep /)
-CURRENT=$(echo ${DISK_INFO} | awk '{ print $5}' | sed 's/%//g')
-SIZE=$(echo ${DISK_INFO} | awk '{ print $2}')
-USED=$(echo ${DISK_INFO} | awk '{ print $3}')
-AVAIL=$(echo ${DISK_INFO} | awk '{ print $4}')
-DEVICE=$(echo ${DISK_INFO} | awk '{ print $1}')
+CURRENT=$(echo "${DISK_INFO}" | awk '{ print $5}' | sed 's/%//g')
+SIZE=$(echo "${DISK_INFO}" | awk '{ print $2}')
+USED=$(echo "${DISK_INFO}" | awk '{ print $3}')
+AVAIL=$(echo "${DISK_INFO}" | awk '{ print $4}')
+DEVICE=$(echo "${DISK_INFO}" | awk '{ print $1}')
 
 if [ "${CURRENT}" -gt "${THRESHOLD}" ] ; then
     /usr/sbin/ssmtp ${RECIPIENTS} << EOF

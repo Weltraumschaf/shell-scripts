@@ -11,7 +11,7 @@ if [ ! -d "${baseDir}" ] ; then
   exit 1
 fi
 
-date=`date "+%Y-%m-%dT%H:%M:%S"`
+date=$(date "+%Y-%m-%dT%H:%M:%S")
 current="${baseDir}/current"
 backup="${baseDir}/${date}"
 
