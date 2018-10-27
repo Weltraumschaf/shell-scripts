@@ -85,10 +85,10 @@ for sourceDir in $sourceDirs; do
     echo "Backing up /${sourceDir}..."
 
     if [[ "${sourceDir}" == "var" ]]; then
-        ignonres="--exclude=/var/cache --exclude=/var/spool --exclude=/var/run --exclude=/var/lock --exclude=/var/tmp"
+        ignonres="--exclude=/var/cache --exclude=/var/spool --exclude=/var/run --exclude=/var/lock --exclude=/var/tmp --exclude=/var/log"
     elif [[ "${sourceDir}" == "home" ]]; then
         ignonres="--exclude=/home/sxs/.m2/repository"
-    else 
+    else
         ignonres=""
     fi
 
