@@ -1,12 +1,28 @@
 #!/usr/bin/env bash
 
+set -eu
+
 ##
 ## Installs the scripts to $HOME/bin by symlinking them.
 ## Already existing inks are backupped.
 ##
 
+program="${0}"
+
+while [ -h "${program}" ]; do
+  ls=$(ls -ld "${program}")
+  link=$(expr "${ls}" : '.*-> \(.*\)$')
+
+  if expr "${link}" : '.*/.*' > /dev/null; then
+    program="${link}"
+  else
+    program=$(dirname "${program}")/"${link}"
+  fi
+done
+
 targetDir="${HOME}/bin"
-sourceDir="src/*.sh"
+sourceDir=$(dirname "${program}")
+sourceDir="${sourceDir}/src"
 
 ##
 ## Links source file into target directory.
@@ -15,11 +31,15 @@ sourceDir="src/*.sh"
 ## @param $1 source script
 ## @param $2 target direcotry
 ##
-function linkFile {
-    source="${PWD}/${1}"
-    targetFile="${1/src\//}"
-    targetFile="${targetFile/\.sh/}"
-    target="${2}/${targetFile}"
+function link_file {
+    source="${1}"
+    target="${source##*/}"
+    echo "${target}"
+    target="${target/\.sh/}"
+    echo "${target}"
+    target="${2}/${target}"
+    echo "${target}"
+    echo "Install ${source} to ${target} ..."
 
     # Only create backup if target is a file or directory
     if [ -f "${target}" ] || [ -d "${target}" ]; then
@@ -37,9 +57,8 @@ if [ ! -d "${targetDir}" ]; then
     mkdir -vp "${targetDir}"
 fi
 
-for file in ${sourceDir}
-do
-  linkFile "${file}" "${targetDir}"
+for file in "${sourceDir}/"*.sh; do
+    link_file "${file}" "${targetDir}"
 done
 
 echo "Finished :)"
