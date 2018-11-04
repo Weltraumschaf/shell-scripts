@@ -21,7 +21,8 @@ while [ -h "${program}" ]; do
 done
 
 targetDir="${HOME}/bin"
-sourceDir=$(dirname "${program}")
+sourceDir=$(realpath "${program}")
+sourceDir=$(dirname "${sourceDir}")
 sourceDir="${sourceDir}/src"
 
 ##
@@ -34,11 +35,9 @@ sourceDir="${sourceDir}/src"
 function link_file {
     source="${1}"
     target="${source##*/}"
-    echo "${target}"
     target="${target/\.sh/}"
-    echo "${target}"
     target="${2}/${target}"
-    echo "${target}"
+
     echo "Install ${source} to ${target} ..."
 
     # Only create backup if target is a file or directory
