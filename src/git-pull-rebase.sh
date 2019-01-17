@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
+set -ue
+
 branch="${1:-}"
 
 if [ "${branch}" = "" ]; then
     echo "No branch given!"
-    echo "Usage: ${0} branch"
+    echo "Usage: $(basename ${0}) <branch>"
     exit 1
 fi
 
