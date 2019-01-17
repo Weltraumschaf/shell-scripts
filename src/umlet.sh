@@ -12,11 +12,6 @@
 ## Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
 ##
 
-# JVM settings.
-JVM_MIN_HEAP_SPACE="128m"
-JVM_MAX_HEAP_SPACE="1024m"
-JVM_OPTIONS="-Xms${JVM_MIN_HEAP_SPACE} -Xmx${JVM_MAX_HEAP_SPACE}"
-
 PROGRAM="${0}"
 
 while [ -h "${PROGRAM}" ]; do
@@ -38,6 +33,11 @@ fi
 
 export UMLET_HOME="${UMLET_DIR}/Umlet"
 JAR="${UMLET_HOME}/umlet.jar"
+
+# JVM settings.
+JVM_MIN_HEAP_SPACE="128m"
+JVM_MAX_HEAP_SPACE="1024m"
+JVM_OPTIONS="-Xms${JVM_MIN_HEAP_SPACE} -Xmx${JVM_MAX_HEAP_SPACE} -Dsun.java2d.xrender=f -Xdock:icon=${UMLET_HOME}/img/umlet_logo.png -Xdock:name=UMLet -Dapple.laf.useScreenMenuBar=true"
 
 if [ ! -f "${JAR}" ] ; then
     PROJECT_DIR=`dirname "${UMLET_DIR}"`
