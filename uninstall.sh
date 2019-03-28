@@ -4,8 +4,25 @@
 ## Uninstalls the scripts from $HOME/bin by removing the symlinks.
 ##
 
+set -eu
+
+program="${0}"
+
+while [ -h "${program}" ]; do
+    ls=$(ls -ld "${program}")
+    link=$(expr "${ls}" : '.*-> \(.*\)$')
+
+    if expr "${link}" : '.*/.*' > /dev/null; then
+        program="${link}"
+    else
+        program=$(dirname "${program}")/"${link}"
+    fi
+done
+
 targetDir="${HOME}/bin"
-sourceDir="src/*.sh"
+sourceDir=$(realpath "${program}")
+sourceDir=$(dirname "${sourceDir}")
+sourceDir="${sourceDir}/src"
 
 ##
 ## Removes link from target directory.
@@ -13,7 +30,7 @@ sourceDir="src/*.sh"
 ## @param $1 source script
 ## @param $2 target direcotry
 ##
-function unlinkFile {
+function unlink_file {
     targetFile="${1/src\//}"
     targetFile="${targetFile/\.sh/}"
     target="${2}/${targetFile}"
@@ -26,9 +43,8 @@ if [ ! -d "${targetDir}" ]; then
     exit
 fi
 
-for file in ${sourceDir}
-do
-  unlinkFile "${file}" "${targetDir}"
+for file in "${sourceDir}/"*.sh; do
+    unlink_file "${file}" "${targetDir}"
 done
 
 echo "Finished :)"

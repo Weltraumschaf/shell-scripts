@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
-set -eu
-
 ##
 ## Installs the scripts to $HOME/bin by symlinking them.
 ## Already existing inks are backupped.
 ##
 
+set -eu
+
 program="${0}"
 
 while [ -h "${program}" ]; do
-  ls=$(ls -ld "${program}")
-  link=$(expr "${ls}" : '.*-> \(.*\)$')
+    ls=$(ls -ld "${program}")
+    link=$(expr "${ls}" : '.*-> \(.*\)$')
 
-  if expr "${link}" : '.*/.*' > /dev/null; then
-    program="${link}"
-  else
-    program=$(dirname "${program}")/"${link}"
-  fi
+    if expr "${link}" : '.*/.*' > /dev/null; then
+        program="${link}"
+    else
+        program=$(dirname "${program}")/"${link}"
+    fi
 done
 
 targetDir="${HOME}/bin"
