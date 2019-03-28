@@ -2,19 +2,21 @@
 
 set -ue
 
-branch="${1:-}"
+local_branch="${1:-}"
 
-if [ "${branch}" = "" ]; then
+if [ "${local_branch}" = "" ]; then
     echo "No branch given!"
-    echo "Usage: $(basename ${0}) <branch>"
+    echo "Usage: $(basename ${0}) <local branch>"
     exit 1
 fi
 
+git stash && \
 git co master && \
-    git pull && \
-    git co "${branch}" && \
-    git rebase master && \
-    git co master && \
-    git merge "${branch}" && \
-    git push && \
-    git co "${branch}"
+git pull origin master && \
+git co "${local_branch}" && \
+git rebase master && \
+git co master && \
+git merge "${local_branch}" && \
+git push origin master && \
+git co "${local_branch}" && \
+git stash pop
