@@ -1,13 +1,29 @@
 #!/usr/bin/env bash
 
-# http://sleepyhead.de/howto/?href=crypt
+set -eu
 
-if [ "${1}" == "" ]; then
-    echo "No input file given!"
+usage="$(basename "${0}") <filename>"
+input_file="${1:-}"
+
+if [ "" = "${input_file}" ]; then
+    echo "Please provide the file name to decrypt."
+    echo "${usage}"
     exit 1
 fi
 
-IN_FILE="${1}"
+output_file="${input_file%.enc}"
+read -rsp "Enter Password: " password
+echo
 
-echo "Dencrypting file ${IN_FILE} ..."
-openssl aes-256-cbc -d -salt -in "${IN_FILE}" -out "${IN_FILE%.aes}"
+if [ -e "${output_file}" ]; then
+    echo "Output file ${output_file} already exists!"
+    read -rep "Overwrite the file? [Y/n]" answer
+
+    if [ "n" = "${answer}" ] || [ "n" = "${answer}" ]; then
+        exit 2
+    fi
+fi
+
+openssl aes-256-cbc -salt -d -k "${password}" -in "${input_file}" -out "${output_file}"
+
+echo "File decrypted into: ${output_file}"
