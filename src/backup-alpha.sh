@@ -11,9 +11,25 @@ ALLOWED_COMMANDS="init|backup|help|test|untest"
 USAGE="$(basename "$0") ${ALLOWED_COMMANDS} <source-pool> <target-pool>"
 
 initialize_backup() {
-    echo "init"
-    # zfs snapshot -r zstorage@backup
-    # zfs send -R zstorage@backup | zfs receive -vF backup
+    SOURCE="${1:-}"
+
+    if [ "${SOURCE}" = "" ]; then
+        echo "No source given!"
+        show_usage
+        exit 3
+    fi
+
+    TARGET="${2:-}"
+
+    if [ "${TARGET}" = "" ]; then
+        echo "No target given!"
+        show_usage
+        exit 4
+    fi
+
+    echo "Initialize backup from ${SOURCE} to ${TARGET}."
+    zfs snapshot -r "${SOURCE}@backup"
+    zfs send -R "${SOURCE}@backup" | sudo zfs receive -vF "${TARGET}"
 }
 
 incremental_backup() {
