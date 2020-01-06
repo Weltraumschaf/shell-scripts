@@ -30,20 +30,31 @@ SOURCE_POOL_NAME="source"
 TARGET_POOL_NAME="target"
 
 create_test_pools() {
-    truncate --size 10G "${SOURCE_POOL_FILE}" "${TARGET_POOL_FILE}"
-    ZPOOL_CREATE_OPTIONS="-f -O compression=lz4 -O normalization=formD"
-    # shellcheck disable=SC2086
-    sudo zpool create ${ZPOOL_CREATE_OPTIONS} "${SOURCE_POOL_NAME}" "${SOURCE_POOL_FILE}"
-    # shellcheck disable=SC2086
-    sudo zpool create ${ZPOOL_CREATE_OPTIONS} "${TARGET_POOL_NAME}" "${TARGET_POOL_FILE}"
+    create_test_pool "${SOURCE_POOL_FILE}" "${SOURCE_POOL_NAME}"
+    create_test_pool "${TARGET_POOL_FILE}" "${TARGET_POOL_NAME}"
+}
+
+create_test_pool() {
+    POOL_FILE="${1:-}"
+    POOL_NAME="${2:-}"
+
+    truncate --size 10G "${POOL_FILE}"
+    sudo zpool create -f -O compression=lz4 -O normalization=formD "${POOL_NAME}" "${POOL_FILE}"
+    sudo zfs set com.apple.ignoreowner=on "${POOL_NAME}"
 }
 
 destroy_test_pools() {
-    sudo zfs destroy -r "${SOURCE_POOL_NAME}"
-    sudo zpool destroy "${SOURCE_POOL_NAME}"
-    sudo zfs destroy -r "${TARGET_POOL_NAME}"
-    sudo zpool destroy "${TARGET_POOL_NAME}"
-    rm -rf "${SOURCE_POOL_FILE}" "${TARGET_POOL_FILE}"
+    destroy_test_pool "${SOURCE_POOL_FILE}" "${SOURCE_POOL_NAME}"
+    destroy_test_pool "${TARGET_POOL_FILE}" "${TARGET_POOL_NAME}"
+}
+
+destroy_test_pool() {
+    POOL_FILE="${1:-}"
+    POOL_NAME="${2:-}"
+
+    sudo zfs destroy -r "${POOL_NAME}"
+    sudo zpool destroy "${POOL_NAME}"
+    rm -rf "${POOL_FILE}"
 }
 
 show_usage() {
