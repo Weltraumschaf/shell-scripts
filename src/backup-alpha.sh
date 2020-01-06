@@ -26,18 +26,23 @@ incremental_backup() {
 
 SOURCE_POOL_FILE="$(pwd)/source.img"
 TARGET_POOL_FILE="$(pwd)/target.img"
+SOURCE_POOL_NAME="source"
+TARGET_POOL_NAME="target"
 
 create_test_pools() {
     truncate --size 10G "${SOURCE_POOL_FILE}" "${TARGET_POOL_FILE}"
-    sudo zpool create source "${SOURCE_POOL_FILE}"
-    sudo zpool create target "${TARGET_POOL_FILE}"
+    ZPOOL_CREATE_OPTIONS="-f -O compression=lz4 -O normalization=formD"
+    # shellcheck disable=SC2086
+    sudo zpool create ${ZPOOL_CREATE_OPTIONS} "${SOURCE_POOL_NAME}" "${SOURCE_POOL_FILE}"
+    # shellcheck disable=SC2086
+    sudo zpool create ${ZPOOL_CREATE_OPTIONS} "${TARGET_POOL_NAME}" "${TARGET_POOL_FILE}"
 }
 
 destroy_test_pools() {
-    sudo zfs destroy -r source
-    sudo zpool destroy source
-    sudo zfs destroy -r target
-    sudo zpool destroy target
+    sudo zfs destroy -r "${SOURCE_POOL_NAME}"
+    sudo zpool destroy "${SOURCE_POOL_NAME}"
+    sudo zfs destroy -r "${TARGET_POOL_NAME}"
+    sudo zpool destroy "${TARGET_POOL_NAME}"
     rm -rf "${SOURCE_POOL_FILE}" "${TARGET_POOL_FILE}"
 }
 
