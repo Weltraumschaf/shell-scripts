@@ -7,7 +7,7 @@ set -u
 # Backscritp for my FreeNAA baes on https://www.ixsystems.com/community/threads/zfs-send-to-external-backup-drive.17850/
 #
 
-ALLOWED_COMMANDS="init|backup|help"
+ALLOWED_COMMANDS="init|backup|help|test|untest"
 USAGE="$(basename "$0") ${ALLOWED_COMMANDS} <source-pool> <target-pool>"
 
 initialize_backup() {
@@ -24,6 +24,21 @@ incremental_backup() {
     # zfs destroy -r zstorage@previous_backup
 }
 
+SOURCE_POOL_FILE="$(pwd)/source.img"
+TARGET_POOL_FILE="$(pwd)/target.img"
+
+create_test_pools() {
+    truncate --size 10G "${SOURCE_POOL_FILE}" "${TARGET_POOL_FILE}"
+    sudo zpool create source "${SOURCE_POOL_FILE}"
+    sudo zpool create target "${TARGET_POOL_FILE}"
+}
+
+destroy_test_pools() {
+    sudo zpool destroy source
+    sudo zpool destroy target
+    rm -rf "${SOURCE_POOL_FILE}" "${TARGET_POOL_FILE}"
+}
+
 show_usage() {
     echo "Usage: ${USAGE}"
 }
@@ -35,6 +50,8 @@ show_help () {
     echo
     echo "  init      Does the initial backup. This may take a while."
     echo "  backup    Does an incremental backup."
+    echo "  test      Creates two test pools (source and target) with 10 GB sparse files in current working direcotry."
+    echo "  untest    Destroys the test pools and delets the sparse image files."
     echo "  help      Show this help."
     echo
 }
@@ -49,6 +66,12 @@ case "${COMMAND}" in
         ;;
     backup)
         incremental_backup "${SOURCE_POOL}" "${TARGET_POOL}"
+        ;;
+    test)
+        create_test_pools
+        ;;
+    untest)
+        destroy_test_pools
         ;;
     help)
         show_help
