@@ -54,6 +54,7 @@ create_test_pool() {
     POOL_FILE="${1:-}"
     POOL_NAME="${2:-}"
 
+    echo "Create test pool ${POOL_NAME} in ${POOL_FILE}"
     truncate --size 10G "${POOL_FILE}"
     sudo zpool create -f -O compression=lz4 -O normalization=formD "${POOL_NAME}" "${POOL_FILE}"
     sudo zfs set com.apple.ignoreowner=on "${POOL_NAME}"
@@ -68,6 +69,7 @@ destroy_test_pool() {
     POOL_FILE="${1:-}"
     POOL_NAME="${2:-}"
 
+    echo "Destroy test pool ${POOL_NAME} in ${POOL_FILE}"
     sudo zfs destroy -r "${POOL_NAME}"
     sudo zpool destroy "${POOL_NAME}"
     rm -rf "${POOL_FILE}"
