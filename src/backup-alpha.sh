@@ -34,7 +34,9 @@ create_test_pools() {
 }
 
 destroy_test_pools() {
+    sudo zfs destroy -r source
     sudo zpool destroy source
+    sudo zfs destroy -r target
     sudo zpool destroy target
     rm -rf "${SOURCE_POOL_FILE}" "${TARGET_POOL_FILE}"
 }
