@@ -35,7 +35,7 @@ function unlink_file {
     targetFile="${targetFile/\.sh/}"
     target="${2}/${targetFile}"
 
-    rm -v "${target}"
+    rm -vf "${target}"
 }
 
 if [ ! -d "${targetDir}" ]; then
