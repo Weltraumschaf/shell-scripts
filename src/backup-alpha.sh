@@ -33,11 +33,27 @@ initialize_backup() {
 }
 
 incremental_backup() {
-    echo "backup"
-    # zfs rename -r zstorage@backup zstorage@previous_backup
-    # zfs snapshot zstorage@backup
-    # zfs send -Ri zstorage@previous_backup zstorage@backup | zfs receive -v backup
-    # zfs destroy -r zstorage@previous_backup
+    SOURCE="${1:-}"
+
+    if [ "${SOURCE}" = "" ]; then
+        echo "No source given!"
+        show_usage
+        exit 3
+    fi
+
+    TARGET="${2:-}"
+
+    if [ "${TARGET}" = "" ]; then
+        echo "No target given!"
+        show_usage
+        exit 4
+    fi
+
+    echo "Incremental backup from ${SOURCE} to ${TARGET}."
+    zfs rename -r "${SOURCE}@backup" "${SOURCE}@previous_backup"
+    zfs snapshot "${SOURCE}@backup"
+    zfs send -Ri "${SOURCE}@previous_backup" "${SOURCE}@backup" | sudo zfs receive -v "${TARGET}"
+    zfs destroy -r "${SOURCE}@previous_backup"
 }
 
 SOURCE_POOL_FILE="$(pwd)/source.img"
