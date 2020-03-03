@@ -12,7 +12,6 @@ set -eu
     && export SCRIPT_DIRECTORY
 
 sourceDir=$(realpath "${SCRIPT_DIRECTORY}")
-sourceDir=$(dirname "${sourceDir}")
 sourceDir="${sourceDir}/src"
 targetDir="${HOME}/bin"
 
@@ -23,11 +22,11 @@ targetDir="${HOME}/bin"
 ## @param $2 target direcotry
 ##
 function unlink_file {
-    targetFile="${1/src\//}"
+    targetFile="${1##*/}"
     targetFile="${targetFile/\.sh/}"
     target="${2}/${targetFile}"
 
-    rm -vf "${target}"
+    rm -v "${target}"
 }
 
 if [ ! -d "${targetDir}" ]; then
