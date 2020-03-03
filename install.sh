@@ -7,23 +7,15 @@
 
 set -eu
 
-program="${0}"
+# @see: http://wiki.bash-hackers.org/syntax/shellvars
+[ -z "${SCRIPT_DIRECTORY:-}" ] \
+    && SCRIPT_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )" \
+    && export SCRIPT_DIRECTORY
 
-while [ -h "${program}" ]; do
-    ls=$(ls -ld "${program}")
-    link=$(expr "${ls}" : '.*-> \(.*\)$')
-
-    if expr "${link}" : '.*/.*' > /dev/null; then
-        program="${link}"
-    else
-        program=$(dirname "${program}")/"${link}"
-    fi
-done
-
-targetDir="${HOME}/bin"
-sourceDir=$(realpath "${program}")
+sourceDir=$(realpath "${SCRIPT_DIRECTORY}")
 sourceDir=$(dirname "${sourceDir}")
 sourceDir="${sourceDir}/src"
+targetDir="${HOME}/bin"
 
 ##
 ## Links source file into target directory.
