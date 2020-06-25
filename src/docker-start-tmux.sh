@@ -10,7 +10,5 @@
 tmux new-session -d -s docker-session
 
 tmux send 'cd /root/docker/locatord && ./start.sh | tee locatord.log' ENTER;
-tmux split-window;
-tmux send 'cd /root/docker/wohnungssuche && ./start.sh | tee wohnungssuche.log' ENTER;
 
 tmux select-layout even-vertical
