@@ -2,5 +2,5 @@
 
 set -eu
 
-rsync -avzh --no-perms -e 'ssh -p 4222' sxs@johan.weltraumschaf.de:/var/svn /mnt/zstorage/backups/legacy
+rsync -avzh --no-perms --delete -e 'ssh -p 4222' sxs@johan.weltraumschaf.de:/var/svn /mnt/zstorage/backups/legacy
 chown -R sxs:sxs /mnt/zstorage/backups/legacy
