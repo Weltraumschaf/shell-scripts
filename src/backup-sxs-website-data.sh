@@ -9,9 +9,3 @@ rsync -avzh --no-perms --delete -e 'ssh -p 4222' \
     "${base_dir}"
 
 chown -R sxs:sxs "${base_dir}/public_html"
-
-if [ -e "${base_dir}/sxs.weltraumschaf.de.tgz" ]; then
-    rm -v "${base_dir}/sxs.weltraumschaf.de.tgz"
-fi
-
-tar czvf "${base_dir}/sxs.weltraumschaf.de.tgz" "${base_dir}/public_html"
