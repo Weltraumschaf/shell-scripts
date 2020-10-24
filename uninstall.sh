@@ -8,8 +8,7 @@ set -eu
 
 # @see: http://wiki.bash-hackers.org/syntax/shellvars
 [ -z "${SCRIPT_DIRECTORY:-}" ] \
-    && SCRIPT_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )" \
-    && export SCRIPT_DIRECTORY
+    && SCRIPT_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 sourceDir="${SCRIPT_DIRECTORY}/src"
 targetDir="${HOME}/bin"
