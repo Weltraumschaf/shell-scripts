@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # https://github.com/nickjj/title-case-converter
 
@@ -8,11 +8,7 @@ import subprocess
 import sys
 import textwrap
 
-try:
-    from urllib.parse import urlencode
-except ImportError:
-    from urllib import urlencode
-
+from urllib.parse import urlencode
 
 def valid_style(str):
     str = str.strip()
