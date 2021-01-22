@@ -17,7 +17,7 @@ if [[ -e "" ]]; then
 fi
 
 mkdir -p "${RESULT_DIR}"
-docker run --rm -d \
+docker run --rm \
     -v "/var/run/docker.sock:/var/run/docker.sock" \
     -v "${RESULT_DIR}:/result" \
     -e PROJECT_NAME="ClairInABox_${RANDOM}" \
