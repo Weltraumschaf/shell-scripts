@@ -24,7 +24,6 @@ declare -a apps=(
     "TextMate.app"
     "Thunderbird.app"
     "Trello.app"
-    "iTerm.app"
 )
 
 cat <<- "EOT"
