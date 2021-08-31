@@ -4,7 +4,7 @@
 ## Uninstalls the scripts from $HOME/bin by removing the symlinks.
 ##
 
-set -eu
+set -euo pipefail
 
 # @see: http://wiki.bash-hackers.org/syntax/shellvars
 [ -z "${SCRIPT_DIRECTORY:-}" ] \

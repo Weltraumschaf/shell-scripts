@@ -5,7 +5,7 @@
 ## Already existing inks are backupped.
 ##
 
-set -eu
+set -euo pipefail
 
 # @see: http://wiki.bash-hackers.org/syntax/shellvars
 [ -z "${SCRIPT_DIRECTORY:-}" ] \
