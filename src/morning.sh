@@ -52,11 +52,11 @@ cat <<- "EOT"
 
     * topgrade
     * Jira
-    * DevOps Team
-    * SECKT
+        * DevOps Team
+        * SECKT
     * GitHub
-    * Notifications
-    * Projectboard
+        * Notifications
+        * Projectboard
     * Trello
     * SCB Retromaßnahmen
 
