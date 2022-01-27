@@ -64,4 +64,4 @@ cat <<- "EOT"
 
 EOT
 
-ultralist list
+ultralist l group:project --notes
