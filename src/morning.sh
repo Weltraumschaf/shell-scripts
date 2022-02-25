@@ -22,7 +22,6 @@ declare -a apps=(
     "MultiFirefox.app"
     "NetNewsWire.app"
     "Signal.app"
-    "Slack.app"
     "TextMate.app"
     "Threema.app"
     "Thunderbird.app"
