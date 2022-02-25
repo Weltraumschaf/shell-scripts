@@ -12,6 +12,7 @@ if [[ "$OSTYPE" != "darwin"* ]]; then
 fi
 
 declare -a apps=(
+    "Authy Desktop.app"
     "BusyCal.app"
     "Discord.app"
     "Fork.app"
