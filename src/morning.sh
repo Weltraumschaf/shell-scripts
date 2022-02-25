@@ -42,8 +42,10 @@ EOT
 echo "Starting some apps..."
 
 for app in "${apps[@]}"; do
+    echo -n '.'
     open -a "${app}"
 done
+echo
 
 echo "Everything startet!"
 
