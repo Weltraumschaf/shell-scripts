@@ -17,6 +17,7 @@ declare -a apps=(
     "Discord.app"
     "Fork.app"
     "Joplin.app"
+    "Logseq.app"
     "Mail.app"
     "Microsoft Teams.app"
     "MultiFirefox.app"
