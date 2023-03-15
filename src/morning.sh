@@ -44,7 +44,7 @@ echo "Starting some apps..."
 
 for app in "${apps[@]}"; do
     echo -n '.'
-    open -a "${app}"
+    open -a "${app}" || true
 done
 echo
 
@@ -52,18 +52,11 @@ echo "Everything startet!"
 
 cat <<- "EOT"
 
-    Morning Todos
+    Nice Tools 🤓
     -------------
 
-    * topgrade
-    * Jira
-        * DevOps Team
-        * SECKT
-    * GitHub
-        * Notifications
-        * Projectboard
-    * Trello
-    * SCB Retromaßnahmen
+    * cheat
+    * dog
 
 EOT
 
