@@ -22,7 +22,6 @@ declare -a apps=(
     "Microsoft Teams.app"
     "MultiFirefox.app"
     "NetNewsWire.app"
-    "Signal.app"
     "Slack.app"
     "TextMate.app"
     "Thunderbird.app"
