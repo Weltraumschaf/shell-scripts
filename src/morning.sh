@@ -13,10 +13,12 @@ fi
 
 declare -a apps=(
     "Authy Desktop.app"
+    "Bitwarden.app"
     "BusyCal.app"
     "Discord.app"
     "Fork.app"
     "Joplin.app"
+    "Lastpass.app"
     "Logseq.app"
     "Mail.app"
     "Microsoft Teams.app"
