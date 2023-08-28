@@ -4,7 +4,7 @@ set -e
 set -u
 
 #
-# Backscritp for my FreeNAA baes on https://www.ixsystems.com/community/threads/zfs-send-to-external-backup-drive.17850/
+# Backup script for my FreeNAS based on https://www.ixsystems.com/community/threads/zfs-send-to-external-backup-drive.17850/
 #
 
 ALLOWED_COMMANDS="init|backup|help|test|untest"
