@@ -21,7 +21,7 @@ declare -a apps=(
     "Joplin.app"
     "Logseq.app"
     "Mail.app"
-    "Microsoft Teams.app"
+    "Microsoft Teams (work or school).app"
     "MultiFirefox.app"
     "NetNewsWire.app"
     "Slack.app"
