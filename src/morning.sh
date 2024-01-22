@@ -18,6 +18,7 @@ declare -a apps=(
     "BusyCal.app"
     "Discord.app"
     "Fork.app"
+    "Ice Cubes.app"
     "Joplin.app"
     "Logseq.app"
     "Mail.app"
@@ -57,7 +58,6 @@ cat <<- "EOT"
     -------------
 
     * cheat
-    * dog
 
 EOT
 
