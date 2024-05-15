@@ -19,7 +19,6 @@ declare -a apps=(
     "Fork.app"
     "Ice Cubes.app"
     "Joplin.app"
-    "Logseq.app"
     "Mail.app"
     "Microsoft Teams (work or school).app"
     "MultiFirefox.app"
