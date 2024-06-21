@@ -20,7 +20,7 @@ declare -a apps=(
     "Ice Cubes.app"
     "Joplin.app"
     "Mail.app"
-    "Microsoft Teams (work or school).app"
+    "Microsoft Teams.app"
     "MultiFirefox.app"
     "NetNewsWire.app"
     "Slack.app"
