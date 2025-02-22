@@ -36,11 +36,11 @@ if [ -z "${YUICOMPRESSOR_DIR}" ] ; then
     YUICOMPRESSOR_DIR=`cd "${PROGRAM_DIRECTORY}" ; pwd`
 fi
 
-JAR="${YUICOMPRESSOR_DIR}/yuicompressor-2.4.7.jar"
+JAR="${YUICOMPRESSOR_DIR}/yuicompressor-2.4.8.jar"
 
 if [ ! -f "${JAR}" ] ; then
     PROJECT_DIR=`dirname "${YUICOMPRESSOR_DIR}"`
-    echo "ERROR: JAR file ${JAR} not pressent in ${YUICOMPRESSOR_DIR}!"
+    echo "ERROR: JAR file ${JAR} not present in ${YUICOMPRESSOR_DIR}!"
     exit 1
 fi
 
