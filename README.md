@@ -7,7 +7,7 @@ All stuff is under the [Beer-Ware-License](http://www.weltraumschaf.de/the-beer-
 
 ## Installation
 
-Clone the repo and run the install script:
+Clone the repo and run the installation script:
 
 ```bash
 git clone  https://github.com/Weltraumschaf/shell-scripts.git
@@ -15,5 +15,5 @@ cd shell-scripts
 ./install.sh
 ```
 
-This will create the `bin` direcotry in your home direcotry, if it does not
+This will create the `bin` directory in your home directory, if it does not
 exist yet. And then links all scripts from `src` to that dir.
