@@ -58,5 +58,3 @@ cat <<- "EOT"
     * cheat
 
 EOT
-
-ultralist l group:project --notes
