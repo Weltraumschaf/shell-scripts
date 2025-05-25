@@ -14,6 +14,9 @@ fi
 declare -a apps=(
     "Bitwarden.app"
     "BusyCal.app"
+    "ChatGPT.app"
+    "Claude.app"
+    "DeepL.app"
     "Discord.app"
     "Element.app"
     "Fork.app"
@@ -21,6 +24,7 @@ declare -a apps=(
     "Joplin.app"
     "MultiFirefox.app"
     "NetNewsWire.app"
+    "Perplexity.app"
     "Signal.app"
     "TextMate.app"
     "Thunderbird.app"
