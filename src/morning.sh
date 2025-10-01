@@ -13,12 +13,10 @@ fi
 
 declare -a apps=(
     "1Password.app"
-    "Bitwarden.app"
     "BusyCal.app"
     "ChatGPT.app"
     "Claude.app"
     "DeepL.app"
-    "Discord.app"
     "Element.app"
     "Fork.app"
     "Ice Cubes.app"
