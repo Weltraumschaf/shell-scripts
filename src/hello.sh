@@ -28,7 +28,6 @@ declare -a apps=(
     "Signal.app"
     "TextMate.app"
     "Thunderbird.app"
-    "Threema Beta.app"
     "Trello.app"
 )
 
