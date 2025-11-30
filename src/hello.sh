@@ -25,6 +25,7 @@ declare -a apps=(
     "MultiFirefox.app"
     "NetNewsWire.app"
     "Perplexity.app"
+    "Reminders.app"
     "Signal.app"
     "TextMate.app"
     "Thunderbird.app"
@@ -58,6 +59,8 @@ cat <<- "EOT"
     -------------
 
     * cheat
-    * worm-whole
+    * magic-wormhole (Securely transfers data between computers)
+    * mupdf-tools (Lightweight PDF and XPS viewer)
+    * just (Handy way to save and run project-specific commands)
 
 EOT
