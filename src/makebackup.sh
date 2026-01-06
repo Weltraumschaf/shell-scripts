@@ -4,7 +4,8 @@ set -e
 
 echo "Making backup..."
 
-backupDir="/media/sven.strittmatter/Backup/"
+backupDir="/mnt/Backup/"
+sourceDir="/home/sxs"
 
 if [ ! -d "${backupDir}" ]; then
   echo "Target directory '${backupDir}' not mounted!"
@@ -17,7 +18,6 @@ fi
 # %S  second (00..60)
 now="$(date +%F_%H-%M-%S)"
 backupFileName="${backupDir}/backup_homedir_${now}.tar.bz2"
-sourceDir="/home/ICONGMBH.DE/sven.strittmatter"
 
 echo "Back up home dir ${sourceDir} to ${backupFileName}..."
 
@@ -26,9 +26,7 @@ tar cvpSf "${backupFileName}" \
   --use-compress-program=pbzip2 \
   --exclude="${sourceDir}/.cache" \
   --exclude="${sourceDir}/.ccache" \
-  --exclude="${sourceDir}/Dropbox" \
-  --exclude="${sourceDir}/.dropbox" \
-  --exclude="${sourceDir}/.Skype" \
+  --exclude="${sourceDir}/Nextcloud" \
   --exclude="${sourceDir}/.local/share/Trash" \
   --exclude="${sourceDir}/.m2/repository" \
   --exclude="${sourceDir}/log" \

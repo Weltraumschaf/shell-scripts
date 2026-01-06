@@ -4,7 +4,7 @@ set -e
 set -u
 
 #
-# Clone all my GitHub repos at current working direcotry.
+# Clone all my GitHub repos at current working directory.
 #
 # Based on https://gist.github.com/milanboers/f34cdfc3e1ad9ba02ee8e44dae8e093f
 #
