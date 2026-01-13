@@ -25,6 +25,7 @@ declare -a apps=(
     "Microsoft Teams.app"
     "MultiFirefox.app"
     "NetNewsWire.app"
+    "Obsidian.app"
     "OneDrive.app"
     "Perplexity.app"
     "Reminders.app"
