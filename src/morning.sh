@@ -19,12 +19,10 @@ declare -a apps=(
     "DeepL.app"
     "Element.app"
     "Fork.app"
-    "Ice Cubes.app"
     "Joplin.app"
     "Mail.app"
     "Microsoft Teams.app"
     "MultiFirefox.app"
-    "NetNewsWire.app"
     "Obsidian.app"
     "OneDrive.app"
     "Perplexity.app"
@@ -32,7 +30,6 @@ declare -a apps=(
     "Slack.app"
     "TextMate.app"
     "Thunderbird.app"
-    "Trello.app"
 )
 
 cat <<- "EOT"
