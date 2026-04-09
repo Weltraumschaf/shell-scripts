@@ -17,7 +17,6 @@ declare -a apps=(
     "ChatGPT.app"
     "Claude.app"
     "DeepL.app"
-    "Discord.app"
     "Element.app"
     "Fork.app"
     "Ice Cubes.app"
