@@ -14,21 +14,17 @@ fi
 declare -a apps=(
     "Bitwarden.app"
     "BusyCal.app"
-    "ChatGPT.app"
     "Claude.app"
     "DeepL.app"
     "Element.app"
     "Fork.app"
-    "Ice Cubes.app"
     "Joplin.app"
     "MultiFirefox.app"
     "NetNewsWire.app"
-    "Perplexity.app"
     "Reminders.app"
     "Signal.app"
     "TextMate.app"
     "Thunderbird.app"
-    "Trello.app"
 )
 
 cat <<- "EOT"
